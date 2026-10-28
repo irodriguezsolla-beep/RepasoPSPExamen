@@ -1,0 +1,3 @@
+
+Imprime de nuevo el estado del hilo, que será **TIMED_WAITING** (en lugar de RUNNABLE). Esto se debe a que mientras el hilo `main` estuvo parado durante 0,2 segundos, el `Cocinero` ya había entrado en su propio `Thread.sleep(3000)` y aún sigue durmiendo.
+Después de mostrar ese estado, se interrumpe al hilo sin darle tiempo a llegar a los 3 segundos completos. Por eso no imprime *"[Cocinero] El guiso está listo"*, salta al `catch` e imprime *"[Cocinero] ¡Me han cortado la luz!"*. Tras la interrupción, el `main` espera con `join()` y finalmente imprime el estado **TERMINATED**.
